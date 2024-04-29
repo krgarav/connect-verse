@@ -3,6 +3,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Auth from './pages/Auth';
 import Homepage from './pages/Homepage';
 const Stack = createNativeStackNavigator();
+import { NativeWindStyleSheet } from "nativewind";
+
+NativeWindStyleSheet.setOutput({
+  default: "native",
+});
 
 export default function App() {
   return <NavigationContainer>
