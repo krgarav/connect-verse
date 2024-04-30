@@ -3,22 +3,22 @@ import {
   Text,
   View,
   TextInput,
-  Button,
   Keyboard,
   Dimensions,
+  ImageBackground,
+  Image,
 } from "react-native";
 import React, { useRef } from "react";
 import { Button as Btn } from "react-native-paper";
 
-const Auth = () => {
+const Auth = ({ navigation }) => {
   const passwordInputRef = useRef(null);
   const handleEmailOrMobileSubmit = () => {
     passwordInputRef.current.focus();
   };
-  const focusPasswordInput = () => {
-    // Explicitly show the keyboard and focus on the password input
-    Keyboard.dismiss();
-    setTimeout(() => passwordInputRef.current.focus(), 100); // Adding a small delay to ensure keyboard is closed before focusing
+
+  const LoginHandler = () => {
+    navigation.navigate("homepage");
   };
   const screenHeight = Dimensions.get("window").height;
   const iconHeight = screenHeight * 0.3;
@@ -26,36 +26,36 @@ const Auth = () => {
   const footerHeight = screenHeight - iconHeight - formHeight;
   return (
     <View style={styles.headContainer}>
-   
-      <View style={[styles.iconContainer, { height: iconHeight }]}>
-        <Text>English</Text>
-      </View>
-      <View style={[styles.formContainer, { height: formHeight }]}>
-        <TextInput
-          placeholder="Mobile number or email address"
-          returnKeyType="next"
-          onSubmitEditing={handleEmailOrMobileSubmit}
-          style={styles.input}
-          onFocus={Keyboard.isVisible}
-          onBlur={Keyboard.isVisible}
-        />
-        <TextInput
-          placeholder="Password"
-          ref={passwordInputRef}
-          style={styles.input}
-        />
-        <Text style={{ height: 8 }}></Text>
-        <Btn mode="contained" buttonColor="blue">
-          Log In
-        </Btn>
+      <ImageBackground source={require("../assets/bg.jpg")}>
+        <View style={[styles.iconContainer, { height: iconHeight }]}>
+          <Image source={require("../assets/logo.png")} />
+        </View>
+        <View style={[styles.formContainer, { height: formHeight }]}>
+          <TextInput
+            placeholder="Mobile number or email address"
+            returnKeyType="next"
+            onSubmitEditing={handleEmailOrMobileSubmit}
+            style={styles.input}
+            onFocus={Keyboard.isVisible}
+            onBlur={Keyboard.isVisible}
+          />
+          <TextInput
+            placeholder="Password"
+            ref={passwordInputRef}
+            style={styles.input}
+          />
+          <Text style={{ height: 8 }}></Text>
+          <Btn onPress={LoginHandler} mode="contained" buttonColor="blue">
+            Log In
+          </Btn>
 
-        <Btn>Forgotten Password?</Btn>
-      </View>
-      <View style={[styles.footerContainer, { height: footerHeight }]}>
-        <Btn mode="outlined">Create new account</Btn>
-        <Text style={styles.headtext}>Connect Verse</Text>
-      </View>
-      {/* </LinearGradient> */}
+          <Btn textColor="white">Forgotten Password?</Btn>
+        </View>
+        <View style={[styles.footerContainer, { height: footerHeight }]}>
+          <Btn mode="outlined">Create new account</Btn>
+          <Text style={styles.headtext}>Connect Verse</Text>
+        </View>
+      </ImageBackground>
     </View>
   );
 };
@@ -66,8 +66,8 @@ const styles = StyleSheet.create({
   headContainer: {
     flex: 1,
     justifyContent: "top",
-    marginLeft: 5,
-    marginRight: 5,
+    // marginLeft: 5,
+    // marginRight: 5,
   },
   gradient: {
     flex: 1,
@@ -80,7 +80,8 @@ const styles = StyleSheet.create({
   },
   iconContainer: {
     // height : "20vh"
-    height: 100,
+    justifyContent: "center",
+    alignSelf: "center",
   },
   headtext: {
     textAlign: "center",
@@ -90,7 +91,8 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   input: {
-    backgroundColor: "#C5C6D0",
+    borderColor: "black",
+    borderWidth: 1,
     width: "100%",
     height: "40",
     margin: 2,
@@ -98,6 +100,7 @@ const styles = StyleSheet.create({
     marginTop: 6,
     marginBottom: 6,
     borderRadius: 8,
+    color: "ivory",
   },
   divider1: {
     width: "45%",

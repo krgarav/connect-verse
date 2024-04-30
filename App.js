@@ -11,7 +11,7 @@ NativeWindStyleSheet.setOutput({
 
 export default function App() {
   return <NavigationContainer>
-    <Stack.Navigator initialRouteName="login">
+    <Stack.Navigator initialRouteName="homepage">
       <Stack.Screen name="login" component={Auth} options={{ headerShown: false }} />
       <Stack.Screen name="homepage" component={Homepage} options={{ headerShown: false }} />
     </Stack.Navigator>
