@@ -6,10 +6,12 @@ import { createMaterialTopTabNavigator } from "@react-navigation/material-top-ta
 import Icon from "react-native-vector-icons/Feather";
 import Micon from "react-native-vector-icons/MaterialIcons";
 import IoIcon from "react-native-vector-icons/Ionicons";
+import Icons from "react-native-vector-icons/Foundation";
 import HeadNav from "../component/headNav";
+import Homemenu from "../component/homemenu";
 const Tab = createMaterialTopTabNavigator();
 
-const Screen1 = () => <Text>Screen 1</Text>;
+const Screen1 = () => <Homemenu />;
 const Screen2 = () => <Text>Screen 2</Text>;
 const Screen3 = () => <Text>Screen3</Text>;
 const Screen4 = () => <Text>Screen4</Text>;
@@ -17,7 +19,9 @@ const Screen5 = () => <Text>Screen5</Text>;
 const Homepage = () => {
   return (
     <NavigationContainer independent={true}>
+      {/* <View style={{display:"none"}}> */}
       <HeadNav />
+      {/* </View> */}
       <Tab.Navigator
         tabBarOptions={{
           style: { backgroundColor: "#fff" },
@@ -29,8 +33,8 @@ const Homepage = () => {
           name="Screen 1"
           component={Screen1}
           options={{
-            tabBarIcon: ({ color, size }) => (
-              <Icon name="home" size={25} /> // Example icon for Screen 1
+            tabBarIcon: ({ color, size, focused }) => (
+              <Icon name="home" size={25} color={focused && "blue"} /> // Example icon for Screen 1
             ),
             tabBarShowLabel: false,
           }}
@@ -40,8 +44,12 @@ const Homepage = () => {
           name="Screen 2"
           component={Screen2}
           options={{
-            tabBarIcon: ({ color, size }) => (
-              <Micon name="ondemand-video" size={25} /> // Example icon for Screen 1
+            tabBarIcon: ({ color, size, focused }) => (
+              <Micon
+                name="ondemand-video"
+                size={25}
+                color={focused && "blue"}
+              /> // Example icon for Screen 1
             ),
             tabBarShowLabel: false,
           }}
@@ -49,19 +57,23 @@ const Homepage = () => {
         <Tab.Screen
           name="Screen 3"
           component={Screen3}
-          options={{
-            tabBarIcon: ({ color, size }) => (
-              <IoIcon name="people-outline" size={25} color="blue" /> // Example icon for Screen 1
+          options={({ route }) => ({
+            tabBarIcon: ({ color, size, focused }) => (
+              <IoIcon
+                name="people-outline"
+                size={25}
+                color={focused && "blue"}
+              />
             ),
             tabBarShowLabel: false,
-          }}
+          })}
         />
         <Tab.Screen
           name="Screen 4"
           component={Screen4}
           options={{
-            tabBarIcon: ({ color, size }) => (
-              <Icon name="bell" size={25} /> // Example icon for Screen 1
+            tabBarIcon: ({ color, size, focused }) => (
+              <Icon name="bell" size={25} color={focused && "blue"} /> // Example icon for Screen 1
             ),
             tabBarShowLabel: false,
           }}
@@ -70,8 +82,8 @@ const Homepage = () => {
           name="Screen 5"
           component={Screen5}
           options={{
-            tabBarIcon: ({ color, size }) => (
-              <Icon name="home" size={25} /> // Example icon for Screen 1
+            tabBarIcon: ({ color, size, focused }) => (
+              <Icon name="home" size={25} color={focused && "blue"} /> // Example icon for Screen 1
             ),
             tabBarShowLabel: false,
           }}
